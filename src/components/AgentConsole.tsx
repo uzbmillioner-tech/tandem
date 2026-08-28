@@ -79,6 +79,34 @@ const SCENARIOS: Scenario[] = [
     },
   },
   {
+    id: "waste",
+    label: "Log some waste",
+    hint: "A small stock correction. Low risk — the one place a standing approval is offered.",
+    build: (state) => {
+      // Pick a well-stocked ingredient so the correction is unremarkable: the
+      // point of this run is the standing-approval offer, not the shortage.
+      const best = [...state.stock]
+        .filter((s) => s.qty > s.parLevel)
+        .sort((a, b) => b.qty / b.parLevel - a.qty / a.parLevel)[0];
+
+      if (!best) return [{ tool: "list_stock_alerts", args: {} }];
+      const ingredient = state.ingredients.find((i) => i.id === best.ingredientId);
+
+      return [
+        { tool: "show_section", args: { section: "stock", branchId: best.branchId } },
+        {
+          tool: "propose_stock_correction",
+          args: {
+            branchId: best.branchId,
+            ingredientId: best.ingredientId,
+            deltaQty: -Math.max(0.5, Math.round(best.qty * 0.05 * 10) / 10),
+            rationale: `Kitchen reported spoilage on ${ingredient?.name ?? best.ingredientId}. Writing it off so the count matches the shelf.`,
+          },
+        },
+      ];
+    },
+  },
+  {
     id: "reprice",
     label: "Reprice the top seller",
     hint: "Analyses the best seller, then asks for a 6% rise. No cash moves, but margin does.",

@@ -133,45 +133,84 @@ dataset with the live chain this was designed for.
 
 ---
 
-## Video script (target 2:30)
+## Video script (target 2:55 — hard limit is 3:00)
+
+**Before recording:** open the live URL, press **Reset demo**, and read the two
+figures you will name out loud off the screen. The dataset is anchored to the
+current clock, so the lamb cover and the purchase-order total shift from day to
+day. Placeholders below are marked `[…]` — say what is actually on screen.
+
+---
 
 **0:00–0:20 — The problem.**
-Screen: a generic confirm dialog reading "Change price to $16.50? OK / Cancel".
-> "This is what approving an agent's action usually looks like. You're being
-> asked to authorise something nobody has priced. Is that a good idea? The
-> dialog doesn't know. Neither do you."
+*Screen: a plain confirm dialog reading "Change price to $16.50?  OK / Cancel".*
 
-**0:20–0:45 — Tandem, reading.**
-Screen: the dashboard. Run "Morning check" in the console.
-> "Tandem is a back office for a restaurant chain. Ten read-only tools — the
-> agent uses them freely, because reading changes nothing. It finds Downtown is
-> nineteen hours from running out of lamb."
+> "This is what approving an agent's action usually looks like. You are being
+> asked to authorise something nobody has priced. Is it a good idea? The dialog
+> doesn't know. Neither do you."
 
-**0:45–1:35 — The handshake.**
-Screen: run "Fix the shortage". The proposal card appears.
-> "Now it wants to spend money. Watch the tool call — it hasn't returned. It's
-> waiting. And the page has computed what the agent couldn't: five hundred and
-> fifty-one dollars leaving the business, and a warning that delivery takes a
-> day but the lamb runs out in eighteen hours. Ordering doesn't stop the
-> stockout. That's the site's knowledge, not the model's."
-Click Approve.
+**0:20–0:45 — Reading is free.**
+*Screen: the dashboard. Click **Morning check**.*
+
+> "Tandem is the back office of a three-branch restaurant chain. Ten read-only
+> tools — the agent uses them as freely as it likes, because reading changes
+> nothing. It finds Downtown is `[…]` hours from running out of lamb."
+
+**0:45–1:40 — The handshake.**
+*Screen: click **Fix the shortage**. Let the proposal card appear. Point at the
+yellow "Running" line in the console before touching anything.*
+
+> "Now it wants to spend money. Watch the tool call — it hasn't returned. It is
+> waiting.
+>
+> And the page has worked out what the agent could not: `[…]` dollars leaving
+> the business, and a warning that this supplier takes a day to deliver while
+> the lamb runs out in `[…]` hours. Ordering does not stop the stockout. That is
+> the site's knowledge, not the model's."
+
+*Click **Approve**.*
+
 > "Now the tool returns — and the stock moves."
 
-**1:35–2:05 — Rejection is a conversation.**
-Screen: run "Handle a complaint", type a note, hit Reject.
-> "Reject it, and tell it why. The agent gets your reason and is told not to
-> retry the same thing. That's a colleague, not a retry loop."
+**1:40–2:05 — Rejection is a conversation.**
+*Screen: click **Handle a complaint**. Type a reason into the note field, then
+click **Reject**. Let the transcript scroll to the result.*
 
-**2:05–2:25 — The trust ladder.**
-Screen: approve a small stock correction with the standing-approval box ticked.
-> "Confirming everything is worse than no agent at all. So small, reversible
-> changes can get a standing approval — one kind of change, one cash ceiling,
-> five uses, revocable, and still in the audit log."
+> "Reject it, and tell it why. The agent gets your reason back, and is told not
+> to retry the same change. That is a colleague, not a retry loop."
 
-**2:25–2:40 — Close.**
-Screen: the audit view.
+**2:05–2:40 — The trust ladder, and its payoff.**
+*Screen: click **Log some waste**. Tick the standing-approval checkbox on the
+card, then **Approve**. Show the grant appearing in the rail.*
+
+> "Confirming everything is worse than having no agent at all. So small,
+> reversible changes can earn a standing approval — one kind of change, one cash
+> ceiling, five uses, revocable from here at any time."
+
+*Click **Log some waste** a second time. No card appears; the run completes
+straight through.*
+
+> "Now watch. Same tool, same kind of change — and it doesn't interrupt me. The
+> agent is told it was auto-approved, it's in the audit log, and I can revoke
+> that grant with one click. The ladder buys quiet, not blindness."
+
+**2:40–2:55 — Close.**
+*Screen: the Audit section.*
+
 > "Every change to this business has a line here saying who asked and who
 > agreed. The agent got faster. Nobody gave up control."
+
+---
+
+### Recording notes
+
+- The whole demo is five buttons in the Agent Console — one of them pressed
+  twice. Nothing needs typing except the rejection note.
+- Those buttons call the **same registered tool objects** an agent calls, so the
+  blocking you film is real, not staged.
+- Recording inside the ChatGPT desktop browser instead makes the block more
+  convincing, but it is optional — say which one you used.
+- **Reset demo** in the header puts everything back if a take goes wrong.
 
 ---
 
