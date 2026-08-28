@@ -194,6 +194,11 @@ function assemble({ kind, title, rationale, changes, blast, payload, now }: Buil
   };
 }
 
+/** "1 day", "3 days" — a proposal is read by a person, not a log parser. */
+function plural(n: number, noun: string): string {
+  return `${n} ${noun}${n === 1 ? "" : "s"}`;
+}
+
 function branchName(state: AppState, id: BranchId): string {
   return findBranch(state, id)?.name ?? id;
 }
@@ -426,7 +431,7 @@ export function buildPurchaseOrderProposal(
     warnings.push(
       `${ing?.name ?? short.ingredientId} has ${formatDays(short.daysOfCover)} of cover left but ${
         supplier.name
-      } takes ${supplier.leadTimeDays} day(s) to deliver — the branch runs out before this arrives.`,
+      } takes ${plural(supplier.leadTimeDays, "day")} to deliver — the branch runs out before this arrives.`,
     );
   }
 
