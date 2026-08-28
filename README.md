@@ -71,7 +71,8 @@ reversible — the ladder buys quiet, not opacity.
 
 ## Tools
 
-Eighteen tools, registered on the top-level document.
+Seventeen tools, registered on the top-level document: ten that read, one
+that steers the manager's view, and six that propose.
 
 **Read** (`readOnlyHint: true`)
 `get_business_snapshot` · `list_branches` · `list_menu` · `list_stock_alerts` ·
@@ -91,7 +92,7 @@ branch, highlights a row. So "this is the item I mean" points at something real.
 ```bash
 npm install
 npm run dev        # http://localhost:3000
-npm test           # 86 tests over the money logic
+npm test           # 100 tests over the money logic and the tool contract
 npm run build
 ```
 
@@ -144,7 +145,7 @@ src/lib/
   store.tsx       Shared state, plus the pending-decision registry.
   webmcp/
     types.ts        Hand-written typings + feature detection.
-    tools.ts        The eighteen tools.
+    tools.ts        The seventeen tools.
     runtime.ts      Tool set built once, outside React.
     useAgentTools.ts / useTandemAgent.ts
 src/components/   Shell, views, and the approval card.
@@ -158,7 +159,11 @@ and what happens cannot drift.
 
 `npm test` covers the arithmetic a human approves on: margins, elasticity
 projections, days of cover, supplier minimums, risk thresholds, standing-approval
-bounds, and that a builder never mutates state. The dataset is pinned too — food
+bounds, and that a builder never mutates state.
+
+The tool surface is pinned too — the registered set, read-only annotations,
+description and result sizes against Chrome's guidance, and that a proposing
+tool refuses bad input, never throws, and never writes. So is the dataset: food
 cost has to stay in a band a real operator would recognise, or the demo stops
 being believable.
 
