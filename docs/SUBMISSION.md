@@ -118,6 +118,28 @@ ask people to take the agent half on faith, the page ships an in-page console
 that drives *the same registered tool objects* — including the blocking, so a
 proposal raised from the console waits for a decision exactly as a real one does.
 
+### Accomplishments that we're proud of
+
+**The block is real.** A write tool's promise genuinely stays open until a person
+decides. This is not a modal the page shows itself — the agent's own call is
+suspended, and what it eventually receives is the manager's sentence.
+
+**The site says something the model cannot.** *"Lamb shoulder has 18h of cover
+left but Cascade Meats takes 1 day to deliver — the branch runs out before this
+arrives."* That comes from recipes, live stock, a week of orders and supplier
+terms. No amount of prompting gets an agent to that sentence, because the
+information was never in the conversation.
+
+**The tests earned their keep.** A hundred of them, and they caught two things I
+would otherwise have shipped: a warning quoting a figure derived from the
+supplier's lead time rather than the branch's actual remaining cover — on the
+last screen before money moves — and a claim of eighteen tools where seventeen
+were registered.
+
+**It demonstrates anywhere.** WebMCP sits behind a flag in most browsers today.
+Rather than ask anyone to take the agent half on faith, the page drives its own
+registered tool objects, blocking included.
+
 ### What I learned
 
 WebMCP's real leverage is not that it saves an agent from clicking buttons. It
