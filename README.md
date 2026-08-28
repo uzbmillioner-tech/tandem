@@ -6,6 +6,9 @@ A multi-branch restaurant back office where an AI agent can read everything and
 change nothing on its own. Every write is a costed proposal that waits for a
 human decision.
 
+**[Live demo](https://tandem-lac.vercel.app)** ·
+**[Source](https://github.com/uzbmillioner-tech/tandem)**
+
 Built for [The WebMCP Challenge](https://webmcp.devpost.com/).
 
 ---
