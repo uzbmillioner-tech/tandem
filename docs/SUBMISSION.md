@@ -84,7 +84,7 @@ that can drift.
 
 Tools are registered on `document.modelContext` — not `navigator.modelContext`,
 which was deprecated in Chromium 150 and which most tutorials still show. The
-imperative API only, since the declarative `<form toolname>` variant is not
+imperative JavaScript API only, since the declarative HTML-form variant is not
 supported in ChatGPT's browser. Everything is registered from the top-level
 document, because tools inside an iframe are not discoverable, and a route
 change would tear the tool set down underneath an agent mid-conversation — so
@@ -97,7 +97,7 @@ rate. Proposal *construction* and proposal *application* are deliberately
 separate functions sharing one payload, so what the manager approved and what
 actually happens cannot drift apart.
 
-86 tests cover the arithmetic a human approves on. The seed dataset is pinned
+A hundred tests cover the arithmetic a human approves on, and the tool contract itself. The seed dataset is pinned
 too: food cost has to stay in a band a real operator would recognise, or the
 demo stops being believable.
 
