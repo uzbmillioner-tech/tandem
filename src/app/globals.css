@@ -1,26 +1,233 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/*
+ * Tandem's design tokens.
+ *
+ * The palette is deliberately quiet: this is a back office someone stares at
+ * for a whole shift, and the only things that should pull the eye are money
+ * moving and a decision waiting. Risk colours are the one loud register, and
+ * they are reserved for proposals.
+ */
+
+@theme {
+  --color-ink-50: #f6f7f9;
+  --color-ink-100: #eceef2;
+  --color-ink-200: #d6dae2;
+  --color-ink-300: #b0b7c5;
+  --color-ink-400: #7f8a9d;
+  --color-ink-500: #5c6779;
+  --color-ink-600: #454e5e;
+  --color-ink-700: #353c49;
+  --color-ink-800: #22272f;
+  --color-ink-900: #161a20;
+  --color-ink-950: #0d1015;
+
+  /* Brass — the brand accent. Warm enough to read as hospitality, dark
+     enough to hold white text at small sizes. */
+  --color-brass-100: #f7ead1;
+  --color-brass-300: #e0b56a;
+  --color-brass-500: #c1873a;
+  --color-brass-600: #a06c2a;
+  --color-brass-700: #7d521f;
+
+  --color-risk-low: #0f8a5f;
+  --color-risk-low-soft: #e2f5ec;
+  --color-risk-medium: #b3760a;
+  --color-risk-medium-soft: #fbf0d9;
+  --color-risk-high: #c0392f;
+  --color-risk-high-soft: #fbe9e7;
+
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, "SF Mono", monospace;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* Semantic surface tokens, remapped wholesale for dark mode so component
+   classes never need a `dark:` variant for colour. */
+:root {
+  --surface-page: var(--color-ink-50);
+  --surface-panel: #ffffff;
+  --surface-sunken: var(--color-ink-100);
+  --surface-raised: #ffffff;
+  --border-subtle: var(--color-ink-200);
+  --border-strong: var(--color-ink-300);
+  --text-primary: var(--color-ink-900);
+  --text-secondary: var(--color-ink-500);
+  --text-muted: var(--color-ink-400);
+  --accent: var(--color-brass-600);
+  --accent-contrast: #ffffff;
+  --shadow-panel: 0 1px 2px rgb(13 16 21 / 0.06), 0 4px 12px rgb(13 16 21 / 0.04);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --surface-page: var(--color-ink-950);
+    --surface-panel: var(--color-ink-900);
+    --surface-sunken: #11151b;
+    --surface-raised: var(--color-ink-800);
+    --border-subtle: #262c36;
+    --border-strong: #364050;
+    --text-primary: var(--color-ink-100);
+    --text-secondary: var(--color-ink-300);
+    --text-muted: var(--color-ink-400);
+    --accent: var(--color-brass-300);
+    --accent-contrast: var(--color-ink-950);
+    --shadow-panel: 0 1px 2px rgb(0 0 0 / 0.4), 0 4px 16px rgb(0 0 0 / 0.25);
+
+    --color-risk-low-soft: #10281f;
+    --color-risk-low: #4ade9f;
+    --color-risk-medium-soft: #2b2313;
+    --color-risk-medium: #e3ac4a;
+    --color-risk-high-soft: #2e1917;
+    --color-risk-high: #f08a80;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer base {
+  body {
+    background: var(--surface-page);
+    color: var(--text-primary);
+    font-family: var(--font-sans);
+    font-feature-settings: "cv05", "ss01";
+  }
+
+  /* Tabular figures everywhere money appears, so columns of numbers line up
+     and a changing value does not make the row jitter. */
+  .tnum {
+    font-variant-numeric: tabular-nums;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  .panel {
+    background: var(--surface-panel);
+    border: 1px solid var(--border-subtle);
+    border-radius: 0.75rem;
+    box-shadow: var(--shadow-panel);
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.375rem;
+    border-radius: 0.5rem;
+    border: 1px solid var(--border-strong);
+    padding: 0.4rem 0.75rem;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    line-height: 1.2;
+    color: var(--text-primary);
+    background: var(--surface-raised);
+    cursor: pointer;
+    transition: background-color 120ms ease, border-color 120ms ease, opacity 120ms ease;
+  }
+
+  .btn:hover:not(:disabled) {
+    border-color: var(--accent);
+  }
+
+  .btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  .btn-primary {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--accent-contrast);
+    font-weight: 600;
+  }
+
+  .btn-danger {
+    color: var(--color-risk-high);
+    border-color: var(--color-risk-high);
+    background: transparent;
+  }
+
+  .field {
+    width: 100%;
+    border-radius: 0.5rem;
+    border: 1px solid var(--border-strong);
+    background: var(--surface-sunken);
+    padding: 0.4rem 0.6rem;
+    font-size: 0.8125rem;
+    color: var(--text-primary);
+  }
+
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    border-radius: 999px;
+    padding: 0.125rem 0.5rem;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+
+  /* A table that scrolls inside itself rather than pushing the page sideways. */
+  .table-scroll {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.8125rem;
+  }
+
+  .data-table th {
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.6875rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    padding: 0.5rem 0.75rem;
+    border-bottom: 1px solid var(--border-subtle);
+    white-space: nowrap;
+  }
+
+  .data-table td {
+    padding: 0.5rem 0.75rem;
+    border-bottom: 1px solid var(--border-subtle);
+    white-space: nowrap;
+  }
+
+  .data-table tbody tr:last-child td {
+    border-bottom: none;
+  }
+
+  .row-highlight {
+    background: color-mix(in srgb, var(--accent) 14%, transparent);
+  }
+}
+
+/* A proposal arriving should be noticeable without being a jump-scare. */
+@keyframes proposal-in {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.animate-proposal-in {
+  animation: proposal-in 220ms ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-proposal-in {
+    animation: none;
+  }
 }
